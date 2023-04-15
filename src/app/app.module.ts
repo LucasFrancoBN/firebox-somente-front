@@ -9,6 +9,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { ProdutoComponent } from './produto/produto.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Autenticacao } from './autenticacao.service';
 
 @NgModule({
   declarations: [
@@ -20,8 +22,8 @@ import { ProdutoComponent } from './produto/produto.component';
     LoginComponent,
     ProdutoComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  providers: [Autenticacao],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
