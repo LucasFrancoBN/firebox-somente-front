@@ -1,0 +1,42 @@
+.usuario-container {
+  margin: 7.5rem auto 12.5rem;
+  border-radius: 4px;
+  padding: 2.5rem 5rem;
+}
+
+.usuario-favoritos-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  gap: 1.25rem;
+}
+
+.usuario-favoritos-produto {
+  width: 235px;
+  padding: 0.625rem 0.625rem 0.625rem 1.25rem;
+  border: 2px solid var(--cor-b-3);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.usuario-favoritos-verTodos {
+  width: max-content;
+  position: relative;
+  grid-column: 1 / -1;
+  justify-self: end;
+}
+
+.usuario-favoritos-verTodos::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 50%;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--cor-e-5);
+  transition: width 0.3s ease-in-out;
+}
+
+.usuario-favoritos-verTodos:hover::after {
+  width: 100%;
+}

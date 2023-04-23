@@ -3,7 +3,9 @@ import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class Autenticacao {
   public token_id: any;
 
@@ -54,7 +56,7 @@ export class Autenticacao {
 
             // redireciona para a rota após login
             // this.rotas.navigate(['/'])
-            this.rotas.navigate(['/home']);
+            this.rotas.navigate(['/usuario']);
           });
       })
       .catch((err: Error) => {
@@ -93,7 +95,7 @@ export class Autenticacao {
     // enquanto o token o id_token estiver aramazenado no localstorage,  o sistema sabe que o usuário está logado
     if (
       this.token_id === undefined &&
-      localStorage.getItem('id_token') != null
+      localStorage.getItem('id_token') !== null
     ) {
       this.token_id = localStorage.getItem('id_token');
     }

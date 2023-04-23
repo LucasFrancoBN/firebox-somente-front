@@ -39,6 +39,7 @@ html {
   --mb-4: 4px;
   --mb-8: 8px;
   --mb-12: 12px;
+  --mb-14: 14px;
   --mb-16: 16px;
   --mb-20: 20px;
   --mb-24: 24px;
@@ -63,6 +64,7 @@ html {
   --font-1-m: 500 1.125rem/1.5 "Quicksand", sans-serif;
   --font-1-m-b: 600 1.125rem/1.5 "Quicksand", sans-serif;
   --font-2-m: 400 1.125rem/1.5 "Inter", sans-serif;
+  --font-1-s-b: 600 1rem/1.5 "Quicksand", sans-serif;
   --font-1-s: 500 1rem/1.5 "Quicksand", sans-serif;
   --font-2-s: 400 1rem/1.5 "Inter", sans-serif;
   --font-1-xs: 500 .875rem/1.5 "Quicksand", sans-serif;
@@ -144,6 +146,9 @@ input:focus {
 .font-2-m {
   font: var(--font-2-m)
 }
+.font-1-s-b {
+  font: var(--font-1-s-b)
+}
 .font-1-s {
   font: var(--font-1-s)
 }
@@ -211,6 +216,9 @@ input:focus {
 .mb-12 {
   margin-bottom: var(--mb-12);
 }
+.mb-14 {
+  margin-bottom: var(--mb-14);
+}
 .mb-16 {
   margin-bottom: var(--mb-16);
 }
@@ -258,4 +266,5 @@ input:focus {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
+  width: max-content;
 }

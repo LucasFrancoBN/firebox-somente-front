@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Autenticacao } from './autenticacao.service';
+import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { Autenticacao } from './autenticacao.service';
     FooterComponent,
     LoginComponent,
     ProdutoComponent,
+    PaginaUsuarioComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [Autenticacao],
