@@ -10,8 +10,9 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Autenticacao } from './autenticacao.service';
 import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
+import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
+import { AuthGuard } from './aut-guard.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,10 @@ import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.componen
     LoginComponent,
     ProdutoComponent,
     PaginaUsuarioComponent,
+    CadastrarProdutoComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
-  providers: [Autenticacao],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

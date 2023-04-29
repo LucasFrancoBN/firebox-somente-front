@@ -1,0 +1,30 @@
+.cadastrar-produto-wrapper {
+  margin: 7.5rem auto 12.5rem auto;
+  border-radius: 4px;
+  padding: 2.5rem 5rem;
+}
+
+.cadastrar-produto-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem 2.5rem;
+}
+
+.cadastrar-produto-form form,
+.cadastrar-produto-imgs {
+  grid-row: 2;
+}
+
+.cadastrar-produto-form form div textarea {
+  resize: vertical;
+}
+
+.cadastrar-produto-imgs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, auto));
+  gap: 1rem;
+}
+
+.cadastrar-produto-imgs img {
+  /* object-fit: cover; */
+}

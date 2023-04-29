@@ -108,16 +108,17 @@ label {
   display: block;
 }
 
-input {
+input:not([type="file"]), textarea {
   display: block;
   outline: none;
   padding: 0.5rem;
   border: 2px solid rgba(155, 155, 155, 0.2);
   background-color: rgba(155, 155, 155, 0.1);
   border-radius: 4px;
+  width: 100%;
 }
 
-input:focus {
+input:not([type="file"]):focus, textarea:focus {
   border: 2px solid var(--cor-e-5);
   background-color: var(--cor-b-branco);
 }

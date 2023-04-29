@@ -1,0 +1,29 @@
+<article class="container bg-branco cadastrar-produto-wrapper">
+  <h1 class="font-1-xxl mb-16">Cadastrar Produto</h1>
+  <div class="cadastrar-produto-form">
+  <p class="font-2-l mb-12">Preencha o formulário abaixo e cadastre o seu produto!</p>
+    <form>
+      <div class="font-2-m mb-8">
+        <label for="titulo" class="font-2-s">Título Produto</label>
+        <input type="text" name="titulo" id="titulo" class="font-2-s">
+      </div>
+      <div class="font-2-m mb-8">
+        <label for="preco" class="font-2-s">Preço do Produto</label>
+        <input type="text" name="preco" id="preco" class="font-2-s">
+      </div>
+      <div class="font-2-m mb-8">
+        <label for="descricao" class="font-2-s">Descrição do produto</label>
+        <textarea type="text" name="descricao" id="descricao" class="font-2-s" rows="5"></textarea>
+      </div>
+      <div class="font-2-m mb-8">
+        <label for="fotos" class="font-2-s">Fotos</label>
+        <input type="file" multiple name="fotos[]" id="fotos" class="font-2-s" (change)="onFileChange($event)">
+      </div>
+    </form>
+    <div class="cadastrar-produto-imgs">
+      <figure *ngFor="let file of files">
+        <img [src]="file.url" alt="{{file.name}}">
+      </figure>
+    </div>
+  </div>
+</article>
