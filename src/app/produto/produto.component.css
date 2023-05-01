@@ -51,6 +51,7 @@
 .produto-image-wrapper img {
   max-width: 100%;
   height: auto;
+  border-radius: 4px;
 }
 
 .produto-image-secundaria img {
@@ -66,7 +67,8 @@
 .produto-box {
   padding: 1.25rem;
   border-radius: 4px;
-  border: 2px solid var(--cor-b-2);
+  background-color: var(--cor-b-10);
+  border: 2px solid var(--cor-b-9);
   align-self: start;
 }
 

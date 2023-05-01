@@ -7,7 +7,7 @@
 @media (max-width: 860px) {
   .produtos-container {
     grid-template-columns: repeat(6, 360px);
-    overflow-y: scroll;
+    overflow-x: scroll;
   }
 }
 
@@ -38,7 +38,7 @@
 
 .produtos {
   padding: 1.125rem 0;
-  background: #000 url("../../assets/fogo-de-fundo-home.svg");
+  background: #121212 url("../../assets/fogo-de-fundo-home.svg");
 }
 
 .produto {
@@ -68,7 +68,7 @@
 
 @media (max-width: 860px) {
   .categorias-container {
-    overflow-y: scroll;
+    overflow-x: scroll;
   }
 
   .categoria {
