@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
 import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
 import { AuthGuard } from './aut-guard.service';
+import { FavoritosComponent } from './favoritos/favoritos.component';
+import { ListaEditarProdutosComponent } from './lista-editar-produtos/lista-editar-produtos.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { AuthGuard } from './aut-guard.service';
     ProdutoComponent,
     PaginaUsuarioComponent,
     CadastrarProdutoComponent,
+    FavoritosComponent,
+    ListaEditarProdutosComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [AuthGuard],
