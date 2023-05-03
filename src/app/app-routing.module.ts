@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './aut-guard.service';
 import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { HomeComponent } from './home/home.component';
 import { ListaEditarProdutosComponent } from './lista-editar-produtos/lista-editar-produtos.component';
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'produtos/lista-produto',
     component: ListaEditarProdutosComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'produtos/editar-produto',
+    component: EditarProdutoComponent,
     canActivate: [AuthGuard],
   },
 ];
