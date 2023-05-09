@@ -4,6 +4,7 @@ import { AuthGuard } from './aut-guard.service';
 import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
+import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { HomeComponent } from './home/home.component';
 import { ListaEditarProdutosComponent } from './lista-editar-produtos/lista-editar-produtos.component';
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path: 'produtos/editar-produto',
     component: EditarProdutoComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'usuario/editar-usuario',
+    component: EditarUsuarioComponent,
     canActivate: [AuthGuard],
   },
 ];

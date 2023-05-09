@@ -112,7 +112,8 @@ label {
 }
 
 input:not([type="file"]),
-textarea {
+textarea,
+select {
   display: block;
   outline: none;
   padding: 0.5rem;
@@ -124,7 +125,8 @@ textarea {
 }
 
 input:not([type="file"]):focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   border: 2px solid var(--cor-e-5);
   background-color: var(--cor-b-8);
   color: var(--cor-b-1);
