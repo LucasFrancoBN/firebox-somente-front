@@ -5,11 +5,11 @@
     <form [formGroup]="formulario" (ngSubmit)="publicar()">
       <div class="font-2-s cor-texto-b-4 mb-16">
         <label for="titulo" class="mb-4">Título Produto</label>
-        <input type="text" name="titulo" id="titulo" class="font-2-s">
+        <input type="text" name="titulo" id="titulo" class="font-2-s" formControlName="titulo">
       </div>
       <div class="font-2-s cor-texto-b-4 mb-16">
-        <label for="preco" class="mb-4">Preço do Produto</label>
-        <input type="text" name="preco" id="preco" class="font-2-s">
+        <label for="valor" class="mb-4">Preço do Produto</label>
+        <input type="text" name="valor" id="valor" class="font-2-s" formControlName="valor">
       </div>
       <div class="font-2-s cor-texto-b-4 mb-16">
         <label for="descricao" class="mb-4">Descrição do produto</label>
@@ -17,7 +17,7 @@
       </div>
       <div class="font-2-s cor-texto-b-4 mb-16">
         <label for="categorias">Selecione uma categoria:</label>
-        <select id="categorias" name="categorias">
+        <select id="categorias" name="categorias" formControlName="categoria">
           <option value="eletronicos">Eletrônicos</option>
           <option value="moda-acessorios">Moda e Acessórios</option>
           <option value="casa-decoracao">Casa e Decoração</option>

@@ -33,7 +33,6 @@ export class CadastrarProdutoComponent implements OnInit {
         this.email = user.email;
         console.log(user);
       }
-      console.log(user);
     });
   }
 

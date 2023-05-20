@@ -34,6 +34,13 @@
   border-radius: 4px;
 }
 
+.lista-produto-produtos-produto img {
+  object-fit: cover;
+  width: 215px;
+  height: 116px;
+  border-radius: 4px;
+}
+
 .lista-produto-produtos-editar-btns {
   display: flex;
   justify-content: space-between;

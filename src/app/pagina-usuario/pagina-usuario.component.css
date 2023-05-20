@@ -32,8 +32,22 @@
 .usuario-favoritos-produtos,
 .usuario-produto-editar-produtos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1.25rem;
+}
+
+@media (max-width: 1150px) {
+  .usuario-favoritos-produtos,
+  .usuario-produto-editar-produtos {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .usuario-favoritos-produtos,
+  .usuario-produto-editar-produtos {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 630px) {
@@ -52,6 +66,12 @@
   border: 2px solid var(--cor-b-10);
   border-radius: 4px;
   cursor: pointer;
+}
+
+.usuario-favoritos-produto img,
+.usuario-produto-editar-produto img {
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 .usuario-produto-editar-btns {
