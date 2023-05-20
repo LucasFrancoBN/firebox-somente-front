@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { ListaEditarProdutosComponent } from './lista-editar-produtos/lista-editar-produtos.component';
 import { LoginComponent } from './login/login.component';
 import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
+import { PesquisaComponent } from './pesquisa/pesquisa.component';
 import { ProdutoComponent } from './produto/produto.component';
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
     path: 'usuario/editar-usuario',
     component: EditarUsuarioComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'pesquisa/:pesquisa',
+    component: PesquisaComponent,
   },
 ];
 
