@@ -1,4 +1,6 @@
 import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Autenticacao } from '../autenticacao.service';
 
 @Component({
@@ -11,10 +13,16 @@ export class HeaderComponent implements OnInit {
   menuMobileIsOpen = true;
   estadoLogin = false;
 
-  constructor(private autenticacao: Autenticacao) {}
+  public formulario: FormGroup = new FormGroup({
+    pesquisa: new FormControl(null),
+  });
 
-  ngOnInit() {
-    console.log('Passou :D');
+  constructor(private autenticacao: Autenticacao, private router: Router) {}
+
+  ngOnInit() {}
+
+  pesquisar() {
+    this.router.navigateByUrl('/pesquisa/' + this.formulario.value.pesquisa);
   }
 
   estaLogado() {

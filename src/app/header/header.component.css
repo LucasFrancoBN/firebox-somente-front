@@ -71,15 +71,31 @@
   }
 }
 
-.barra-pesquisa {
+.formulario-pesquisa {
   align-self: center;
+  position: relative;
+}
+
+.barra-pesquisa {
   outline: none;
   border: none;
   border-radius: 4px;
   padding: 0.25rem;
-  background: var(--cor-b-branco) no-repeat url("../../assets/zoom-out.svg")
-    calc(100% - 8px) 50%;
-  background-size: 6%;
+  background: var(--cor-b-branco);
+  color: var(--cor-b-preto);
+}
+
+.barra-pesquisa:focus {
+  color: var(--cor-b-preto);
+}
+
+.formulario-pesquisa button {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translate3d(0, -50%, 0);
+  cursor: pointer;
+  z-index: 1;
 }
 
 @media (max-width: 800px) {

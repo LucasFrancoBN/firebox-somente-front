@@ -124,7 +124,7 @@ select {
   color: var(--cor-b-1);
 }
 
-input:not([type="file"]):focus,
+input:not([type="file"], .barra-pesquisa):focus,
 textarea:focus,
 select:focus {
   border: 2px solid var(--cor-e-5);

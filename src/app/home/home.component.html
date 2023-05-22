@@ -6,72 +6,24 @@
 <article class="produtos bg-tema-escuro-2 mb-120">
   <h1 class="container cor-e-5 font-1-xxl mb-20 produtos-titulo">Alguns Produtos Disponíveis</h1>
   <div class="container produtos-container">
-    <a routerLink="/produto" class="produto bg-gradiente">
-      <figure><img src="../../assets/image 2.png" alt=""></figure>
+    <a routerLink="/produto" class="produto bg-gradiente" *ngFor="let produto of principaisProdutos">
+      <figure><img [src]="produto.url[0]" alt="" width="280" height="170"></figure>
       <div class="produto-desc">
-        <p class="font-2-xs cor-nome-produto">Iphone 14</p>
-        <h2 class="font-1-xl cor-texto">R$ 7.250,00</h2>
-      </div>
-    </a>
-    <a routerLink="/produto" class="produto bg-gradiente">
-      <figure><img src="../../assets/image 4.png" alt=""></figure>
-      <div class="produto-desc">
-        <p class="font-2-xs cor-nome-produto">Notebook Lenovo</p>
-        <h2 class="font-1-xl cor-texto">R$ 1.050,00</h2>
-      </div>
-    </a>
-    <a routerLink="/produto" class="produto bg-gradiente">
-      <figure><img src="../../assets/Rectangle 37.png" alt=""></figure>
-      <div class="produto-desc">
-        <p class="font-2-xs cor-nome-produto">Teclado mecânico logitech</p>
-        <h2 class="font-1-xl cor-texto">R$ 250,00</h2>
-      </div>
-    </a>
-    <a routerLink="/produto" class="produto bg-gradiente">
-      <figure><img src="../../assets/image 4.png" alt=""></figure>
-      <div class="produto-desc">
-        <p class="font-2-xs cor-nome-produto">Mouse gamer RGB</p>
-        <h2 class="font-1-xl cor-texto">R$ 30,00</h2>
-      </div>
-    </a>
-    <a routerLink="/produto" class="produto bg-gradiente">
-      <figure><img src="../../assets/Rectangle 37-1.png" alt=""></figure>
-      <div class="produto-desc">
-        <p class="font-2-xs cor-nome-produto">Apoio para notebook</p>
-        <h2 class="font-1-xl cor-texto">R$ 10,00</h2>
-      </div>
-    </a>
-    <a routerLink="/produto" class="produto bg-gradiente">
-      <figure><img src="../../assets/image 7.png" alt=""></figure>
-      <div class="produto-desc">
-        <p class="font-2-xs cor-nome-produto">Impressora EPSON</p>
-        <h2 class="font-1-xl cor-texto">R$ 5.000,00</h2>
+        <p class="font-2-xs cor-nome-produto">{{produto.titulo}}</p>
+        <h2 class="font-1-xl cor-texto">R$ {{produto.valor}}</h2>
       </div>
     </a>
   </div>
 </article>
 <article class="container mb-200">
-  <h1 class="cor-e-5 font-1-xxl mb-20 categorias-titulo">Principais categorias</h1>
-  <div class="categorias-container bg-gradiente">
-    <a href="#" class="categoria bg-branco">
-      <figure><img src="../../assets/phone-fill.svg" alt=""></figure>
-      <p class="font-2-s cor-b-8">Celulares</p>
-    </a>
-    <a href="#" class="categoria bg-branco">
-      <figure><img src="../../assets/laptop-fill.svg" alt=""></figure>
-      <p class="font-2-s cor-b-8">Notebook</p>
-    </a>
-    <a href="#" class="categoria bg-branco">
-      <figure><img src="../../assets/keyboard-fill.svg" alt=""></figure>
-      <p class="font-2-s cor-b-8">Teclado</p>
-    </a>
-    <a href="#" class="categoria bg-branco">
-      <figure><img src="../../assets/mouse2-fill.svg" alt=""></figure>
-      <p class="font-2-s cor-b-8">Mouse</p>
-    </a>
-    <a href="#" class="categoria bg-branco">
-      <figure><img src="../../assets/printer-fill.svg" alt=""></figure>
-      <p class="font-2-s cor-b-8">Impressora</p>
+  <h1 class="cor-e-5 font-1-xxl mb-20 categorias-titulo">Eletrônicos</h1>
+  <div class="container produtos-container">
+    <a routerLink="/produto" class="produto bg-gradiente" *ngFor="let produto of eletronicos">
+      <figure><img [src]="produto.url[0]" alt="" width="280" height="170"></figure>
+      <div class="produto-desc">
+        <p class="font-2-xs cor-nome-produto">{{produto.titulo}}</p>
+        <h2 class="font-1-xl cor-texto">R$ {{produto.valor}}</h2>
+      </div>
     </a>
   </div>
 </article>

@@ -4,7 +4,10 @@
       <img src="../../assets/Vector.svg" alt="" width="80" height="64">
       <p class="font-1-xl cor-texto">Firebox</p>
     </a>
-    <input class="font-1-m barra-pesquisa" type="text" placeholder="barra pesquisa">
+    <form [formGroup]="formulario" (ngSubmit)="pesquisar()" class="formulario-pesquisa" >
+    <input class="font-1-m barra-pesquisa" type="text" placeholder="barra pesquisa" formControlName="pesquisa">
+    <button><img src="../assets/zoom-out.svg" width="27" height="27"></button>
+    </form>
     <nav>
   <button class="btn" (click)="menuMobile()">
     <span class="icon">
