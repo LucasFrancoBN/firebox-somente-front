@@ -1,5 +1,5 @@
 <article class="container bg-tema-escuro-2 usuario-container">
-  <h1 class="font-1-xxl mb-12 cor-texto-b-3">Olá, Lucas</h1>
+  <h1 class="font-1-xxl mb-12 cor-texto-b-3" *ngIf="dadosUsuarios">Olá, {{dadosUsuarios.nome_usuario}}</h1>
   <p class="font-2-m mb-60 cor-texto-b-6">Seja bem vindo a sua página. Aqui, você poderá relembrar os seus produtos favoritados, chats já iniciados e os seus produtos cadastrados.</p>
   
   <h1 class="font-1-xxl mb-12 cor-texto-b-3">Favoritos</h1>

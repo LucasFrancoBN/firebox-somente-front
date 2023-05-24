@@ -11,6 +11,7 @@ import { ProdutosService } from '../produtos.service';
 export class CadastrarProdutoComponent implements OnInit {
   public email: any;
   maxFiles = 4;
+  minFiles = 4;
   fileCount = 0;
   files: any[] = [];
 
@@ -79,7 +80,10 @@ export class CadastrarProdutoComponent implements OnInit {
 
   onFileChange(event: any) {
     this.fileCount = event.target.files.length;
-    if (this.fileCount > this.maxFiles) {
+    if (this.fileCount < this.minFiles) {
+      alert(`Por favor, selecione no mínimo ${this.minFiles} arquivos.`);
+      event.target.value = '';
+    } else if (this.fileCount > this.maxFiles) {
       alert(`Por favor, selecione no máximo ${this.maxFiles} arquivos.`);
       event.target.value = '';
     } else {

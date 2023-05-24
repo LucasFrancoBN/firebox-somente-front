@@ -10,6 +10,7 @@ import { ProdutosService } from '../produtos.service';
 export class PaginaUsuarioComponent implements OnInit {
   produtosCriados: any;
   email: any;
+  dadosUsuarios: any;
 
   constructor(private produtos: ProdutosService) {}
 
@@ -25,7 +26,10 @@ export class PaginaUsuarioComponent implements OnInit {
             console.log(this.produtosCriados, produtos);
           })
           .catch((error) => console.log(error));
-        console.log(this.produtosCriados);
+        this.produtos.acessarDadosUsuario(this.email).then((dadosUsuarios) => {
+          this.dadosUsuarios = dadosUsuarios;
+          console.log(dadosUsuarios);
+        });
       }
     });
   }
