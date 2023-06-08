@@ -14,6 +14,9 @@ export class CadastrarProdutoComponent implements OnInit {
   minFiles = 4;
   fileCount = 0;
   files: any[] = [];
+  isLoading = false;
+  success: string = "";
+  warning: string = ""
 
   public imagem: any;
   public imagem2: any;
@@ -39,9 +42,11 @@ export class CadastrarProdutoComponent implements OnInit {
 
   // função que manda os dados para o serviço de publicação
   public publicar() {
-    console.log(this.imagem[0], this.imagem[1], this.imagem[2], this.imagem[3]);
-    this.produto
-      .publicar({
+    this.isLoading = true;
+    const promises = [];
+
+    promises.push(
+      this.produto.publicar({
         email: this.email,
         titulo: this.formulario.value.titulo,
         categoria: this.formulario.value.categoria,
@@ -49,32 +54,47 @@ export class CadastrarProdutoComponent implements OnInit {
         imagem: this.imagem[0] ? this.imagem[0] : '',
         nome_usuario: this.produto.acessarDadosUsuarioDetalhe(this.email),
       })
-      .then(() => {
-        this.produto.publicar2({
-          email: this.email,
-          titulo: this.formulario.value.titulo,
-          categoria: this.formulario.value.categoria,
-          valor: this.formulario.value.valor,
-          imagem2: this.imagem[1] ? this.imagem[1] : '',
-        });
+    );
+
+    promises.push(
+      this.produto.publicar2({
+        email: this.email,
+        titulo: this.formulario.value.titulo,
+        categoria: this.formulario.value.categoria,
+        valor: this.formulario.value.valor,
+        imagem2: this.imagem[1] ? this.imagem[1] : '',
       })
-      .then(() => {
-        this.produto.publicar3({
-          email: this.email,
-          titulo: this.formulario.value.titulo,
-          categoria: this.formulario.value.categoria,
-          valor: this.formulario.value.valor,
-          imagem3: this.imagem[2] ? this.imagem[2] : '',
-        });
+    );
+
+    promises.push(
+      this.produto.publicar3({
+        email: this.email,
+        titulo: this.formulario.value.titulo,
+        categoria: this.formulario.value.categoria,
+        valor: this.formulario.value.valor,
+        imagem3: this.imagem[2] ? this.imagem[2] : '',
       })
+    );
+
+    promises.push(
+      this.produto.publicar4({
+        email: this.email,
+        titulo: this.formulario.value.titulo,
+        categoria: this.formulario.value.categoria,
+        valor: this.formulario.value.valor,
+        imagem4: this.imagem[3] ? this.imagem[3] : '',
+      })
+    );
+
+    Promise.all(promises)
       .then(() => {
-        this.produto.publicar4({
-          email: this.email,
-          titulo: this.formulario.value.titulo,
-          categoria: this.formulario.value.categoria,
-          valor: this.formulario.value.valor,
-          imagem4: this.imagem[3] ? this.imagem[3] : '',
-        });
+        this.success = "Produto cadastrado com sucesso";
+      })
+      .catch((error) => {
+        this.warning = "Não foi possível cadastrar o produto"
+      })
+      .finally(() => {
+        this.isLoading = false;
       });
   }
 

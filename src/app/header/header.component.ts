@@ -10,7 +10,7 @@ import { Autenticacao } from '../autenticacao.service';
 })
 export class HeaderComponent implements OnInit {
   @Input() showHome!: boolean;
-  menuMobileIsOpen = true;
+  menuMobileIsOpen = false;
   estadoLogin = false;
 
   public formulario: FormGroup = new FormGroup({

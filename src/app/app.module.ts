@@ -18,6 +18,7 @@ import { ListaEditarProdutosComponent } from './lista-editar-produtos/lista-edit
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 import { PesquisaComponent } from './pesquisa/pesquisa.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { PesquisaComponent } from './pesquisa/pesquisa.component';
     EditarProdutoComponent,
     EditarUsuarioComponent,
     PesquisaComponent,
+    LoadingComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [AuthGuard],

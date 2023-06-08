@@ -1,4 +1,7 @@
 <article class="container bg-tema-escuro-2 cadastrar-produto-wrapper">
+  <div *ngIf="isLoading">
+    <app-loading></app-loading>
+  </div>
   <h1 class="font-1-xxl mb-16 cor-texto-b-3">Cadastrar Produto</h1>
   <div class="cadastrar-produto-form">
   <p class="font-2-l mb-12 cor-texto-b-6">Preencha o formulário abaixo e cadastre o seu produto!</p>
@@ -26,13 +29,18 @@
           <option value="beleza-cuidados-pessoais">Beleza e Cuidados Pessoais</option>
           <option value="livros-filmes-musica">Livros, Filmes e Música</option>
           <option value="saude-bem-estar">Saúde e Bem-estar</option>
-          <option value="alimentos-bebidas">Alimentos e Bebidas</option>
           <option value="outros">Outros</option>
         </select>
       </div>
       <div class="font-2-s cor-texto-b-4 mb-16">
         <label for="fotos" class="mb-4">Fotos</label>
         <input type="file" multiple name="fotos[]" id="fotos" class="font-2-s cadastrar-produto-form-arquivo" (change)="onFileChange($event)">
+      </div>
+      <div *ngIf="success">
+        <p class="success font-2-s">{{success}}</p>
+      </div>
+      <div *ngIf="warning">
+        <p class="warning font-2-s">{{warning}}</p>
       </div>
       <button class="button font-1-m-b">Cadastrar</button>
     </form>

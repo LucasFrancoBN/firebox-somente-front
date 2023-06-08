@@ -299,3 +299,20 @@ select:focus {
   cursor: pointer;
   width: max-content;
 }
+
+.success {
+  padding: 0.5rem 1rem;
+  background-color: #379237;
+  margin-bottom: var(--mb-16);
+  border-radius: 4px;
+  color: var(--cor-b-1);
+}
+
+.warning {
+  padding: 0.5rem 1rem;
+  background-color: #ffd95a;
+  margin-top: var(--mb-16);
+  margin-bottom: var(--mb-16);
+  border-radius: 4px;
+  color: var(--cor-b-12);
+}
