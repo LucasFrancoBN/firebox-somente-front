@@ -19,6 +19,7 @@ import { EditarProdutoComponent } from './editar-produto/editar-produto.componen
 import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 import { PesquisaComponent } from './pesquisa/pesquisa.component';
 import { LoadingComponent } from './loading/loading.component';
+import { Ofertas } from './ofertas.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { LoadingComponent } from './loading/loading.component';
     LoadingComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
-  providers: [AuthGuard],
+  providers: [AuthGuard, Ofertas],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

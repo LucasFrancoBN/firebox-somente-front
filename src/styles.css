@@ -289,6 +289,14 @@ select:focus {
 .mb-200 {
   margin-bottom: var(--mb-200);
 }
+@media (max-width: 860px) {
+  .mb-120 {
+    margin-bottom: var(--mb-80);
+  }
+  .mb-200 {
+    margin-bottom: var(--mb-80);
+  }
+}
 
 .button {
   text-transform: uppercase;

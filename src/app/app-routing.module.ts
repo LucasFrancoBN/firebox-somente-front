@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cadastro', component: CadastroComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'produto', component: ProdutoComponent },
+  { path: 'produto/:key', component: ProdutoComponent },
   {
     path: 'cadastrar-produto',
     component: CadastrarProdutoComponent,

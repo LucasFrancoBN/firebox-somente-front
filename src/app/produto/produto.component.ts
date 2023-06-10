@@ -1,18 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Ofertas } from '../ofertas.service';
 
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
   styleUrls: ['./produto.component.css'],
 })
-export class ProdutoComponent {
-  fotos: string[] = [
-    '../../assets/image-secundaria.png',
-    '../../assets/image-secundaria-2.png',
-    '../../assets/image-produto-secundaria-3.png',
-  ];
+export class ProdutoComponent implements OnInit {
+  fotos: string[] = [];
+  fotoPrincipal: string = '';
+  key: string | null = '';
+  produto: any;
+  isLoading: boolean = false;
 
-  fotoPrincipal: string = '../../assets/image-produto-principal.png';
+  constructor(private route: ActivatedRoute, private ofertas: Ofertas) {}
+
+  ngOnInit(): void {
+    this.isLoading = true;
+    this.route.paramMap.subscribe((params) => (this.key = params.get('key')));
+    this.ofertas.RetornaOferta(this.key).then((response) => {
+      this.produto = response;
+      console.log(this.produto);
+      this.fotos = this.produto[0].url.slice(1, 4);
+      this.fotoPrincipal = this.produto[0].url[0];
+      this.isLoading = false;
+    });
+  }
 
   mudarFotoPrincipal(indexFoto: number) {
     const aux = this.fotoPrincipal;

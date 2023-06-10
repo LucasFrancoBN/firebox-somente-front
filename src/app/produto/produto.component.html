@@ -1,17 +1,18 @@
 <article class="container bg-tema-escuro-2 produto-wrapper mb-200">
+  <div *ngIf="isLoading"><app-loading></app-loading></div>
   <h1 class="font-1-xxl mb-12 produto-titulo cor-e-5">Iphone 14</h1>
   <div class="produto-info">
     <div class="produto-image-wrapper">
-      <figure class="image-principal"><img src="{{fotoPrincipal}}" alt="" width="490" height="387"></figure>
-      <div class="produto-image-secundaria">
+      <figure class="image-principal" *ngIf="produto"><img src="{{fotoPrincipal}}" alt="" width="490" height="387"></figure>
+      <div class="produto-image-secundaria" *ngIf="produto">
         <figure class="image-secundaria mb-12"><img src="{{fotos[0]}}" alt="" (click)="mudarFotoPrincipal(0)" width="65" height="80"></figure>
         <figure class="image-secundaria mb-12"><img src="{{fotos[1]}}" alt="" (click)="mudarFotoPrincipal(1)" width="65" height="80"></figure>
         <figure class="image-secundaria mb-12"><img src="{{fotos[2]}}" alt="" (click)="mudarFotoPrincipal(2)" width="65" height="80"></figure>
       </div>
     </div>
     <div class="produto-box">
-      <p class="produto-vendedor font-2-s mb-8 cor-texto-b-3">Firebox</p>
-      <h2 class="font-2-xl mb-12 produto-preco cor-e-5">R$ 7.250,00</h2>
+      <p class="produto-vendedor font-2-s mb-8 cor-texto-b-3" *ngIf="produto">{{produto[0].nome_usuario}}</p>
+      <h2 class="font-2-xl mb-12 produto-preco cor-e-5" *ngIf="produto">R$ {{produto[0].valor}}</h2>
       <p class="font-2-xs mb-8 cor-texto-b-6">Entre em contato com o vendedor e finalize a sua compra agora!</p>
       <button class="button font-2-s">Chat <img src="../../assets/fogo-de-fundo-home.svg" alt="" width="24"></button>
     </div>
