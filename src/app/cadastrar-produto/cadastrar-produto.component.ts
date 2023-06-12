@@ -26,6 +26,7 @@ export class CadastrarProdutoComponent implements OnInit {
   public formulario: FormGroup = new FormGroup({
     titulo: new FormControl(null),
     categoria: new FormControl(null),
+    descricao: new FormControl(null),
     valor: new FormControl(null),
   });
 

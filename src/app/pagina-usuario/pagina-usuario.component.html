@@ -4,35 +4,14 @@
   
   <h1 class="font-1-xxl mb-12 cor-texto-b-3">Favoritos</h1>
   <div class="usuario-favoritos-wrapper mb-60">
-    <div class="usuario-favoritos-produtos mb-12">
-      <div class="usuario-favoritos-produto">
+    <div class="usuario-favoritos-produtos mb-12" *ngIf="favoritados" >
+      <a [routerLink]="'/produto/' + favorito.key" class="usuario-favoritos-produto" *ngFor="let favorito of favoritados.slice(0, 4)">
         <figure class="usuario-favoritos-imagem mb-12">
-          <img src="../../assets/image 4.png">
+          <img src="{{favorito.url[0]}}" width="215" height="128">
         </figure>
-        <h2 class="usuario-favoritos-nome font-2-m mb-8 cor-texto-b-6">Notebook lenovo</h2>
-        <p class="usuario-favoritos-preco font-2-m cor-texto-b-3">R$ 1.500,00</p>
-      </div>
-      <div class="usuario-favoritos-produto">
-        <figure class="usuario-favoritos-imagem mb-12">
-          <img src="../../assets/image 2.png">
-        </figure>
-        <h2 class="usuario-favoritos-nome font-2-m mb-8 cor-texto-b-6">Notebook lenovo</h2>
-        <p class="usuario-favoritos-preco font-2-m cor-texto-b-3">R$ 1.500,00</p>
-      </div>
-      <div class="usuario-favoritos-produto">
-        <figure class="usuario-favoritos-imagem mb-12">
-          <img src="../../assets/image 4.png">
-        </figure>
-        <h2 class="usuario-favoritos-nome font-2-m mb-8 cor-texto-b-6">Notebook lenovo</h2>
-        <p class="usuario-favoritos-preco font-2-m cor-texto-b-3">R$ 1.500,00</p>
-      </div>
-      <div class="usuario-favoritos-produto">
-        <figure class="usuario-favoritos-imagem mb-12">
-          <img src="../../assets/image 7.png">
-        </figure>
-        <h2 class="usuario-favoritos-nome font-2-m mb-8 cor-texto-b-6">Notebook lenovo</h2>
-        <p class="usuario-favoritos-preco font-2-m cor-texto-b-3">R$ 1.500,00</p>
-      </div>
+        <h2 class="usuario-favoritos-nome font-2-m mb-8 cor-texto-b-6">{{favorito.titulo}}</h2>
+        <p class="usuario-favoritos-preco font-2-m cor-texto-b-3">R$ {{favorito.valor}}</p>
+      </a>
     </div>
     <a routerLink="/produtos/favoritos" class="font-2-l usuario-favoritos-verTodos cor-texto-b-3">Ver Todos <span class="cor-e-5">-></span></a>
   </div>

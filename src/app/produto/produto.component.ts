@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Favoritos } from '../favoritos.service';
 import { Ofertas } from '../ofertas.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-produto',
@@ -13,11 +15,21 @@ export class ProdutoComponent implements OnInit {
   key: string | null = '';
   produto: any;
   isLoading: boolean = false;
+  usuario: any;
+  email: string = '';
+  disabled: boolean = false;
 
-  constructor(private route: ActivatedRoute, private ofertas: Ofertas) {}
+  constructor(
+    private route: ActivatedRoute,
+    private ofertas: Ofertas,
+    private favoritos: Favoritos
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
+    firebase.auth().onAuthStateChanged((user: any) => {
+      this.email = user.email;
+    });
     this.route.paramMap.subscribe((params) => (this.key = params.get('key')));
     this.ofertas.RetornaOferta(this.key).then((response) => {
       this.produto = response;
@@ -32,5 +44,24 @@ export class ProdutoComponent implements OnInit {
     const aux = this.fotoPrincipal;
     this.fotoPrincipal = this.fotos[indexFoto];
     this.fotos[indexFoto] = aux;
+  }
+
+  favoritar() {
+    if (!this.estaLogado()) {
+      window.alert('Você precisa estar logado para favoritar um produto');
+      return;
+    }
+    console.log(this.email, this.produto[0]);
+    this.favoritos.Favoritar(this.email, { ...this.produto[0], key: this.key });
+    window.alert('Produto favoritado');
+    this.disabled = true;
+  }
+
+  estaLogado() {
+    const token = window.localStorage.getItem('id_token');
+    if (token) {
+      return true;
+    }
+    return false;
   }
 }

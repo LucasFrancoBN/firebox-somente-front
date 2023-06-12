@@ -73,11 +73,21 @@
   align-self: start;
 }
 
+.produto-box .produto-box-btns {
+  display: flex;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+}
+
 .produto-box .button {
   display: flex;
   gap: 0.25rem;
 }
 
-.produto-box .button img {
+.produto-box .button:nth-child(2) {
+  gap: 0.5rem;
+}
+
+.produto-box .button:not(:nth-child(2)) img {
   transform: rotate(30deg);
 }

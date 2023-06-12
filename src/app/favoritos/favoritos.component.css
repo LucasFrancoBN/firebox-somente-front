@@ -34,3 +34,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.favoritos-produtos-produto img {
+  object-fit: cover;
+}

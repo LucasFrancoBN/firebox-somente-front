@@ -20,6 +20,7 @@ import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.componen
 import { PesquisaComponent } from './pesquisa/pesquisa.component';
 import { LoadingComponent } from './loading/loading.component';
 import { Ofertas } from './ofertas.service';
+import { Favoritos } from './favoritos.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { Ofertas } from './ofertas.service';
     LoadingComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
-  providers: [AuthGuard, Ofertas],
+  providers: [AuthGuard, Ofertas, Favoritos],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

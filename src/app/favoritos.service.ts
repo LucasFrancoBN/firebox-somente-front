@@ -11,6 +11,7 @@ export class Favoritos {
       .push(dados)
       .then((snapshot: any) => {
         this.key = snapshot.key;
+        console.log(dados.key);
         firebase
           .database()
           .ref(`favoritos/${btoa(email)}/${this.key}`)

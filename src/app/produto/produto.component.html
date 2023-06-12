@@ -14,7 +14,10 @@
       <p class="produto-vendedor font-2-s mb-8 cor-texto-b-3" *ngIf="produto">{{produto[0].nome_usuario}}</p>
       <h2 class="font-2-xl mb-12 produto-preco cor-e-5" *ngIf="produto">R$ {{produto[0].valor}}</h2>
       <p class="font-2-xs mb-8 cor-texto-b-6">Entre em contato com o vendedor e finalize a sua compra agora!</p>
-      <button class="button font-2-s">Chat <img src="../../assets/fogo-de-fundo-home.svg" alt="" width="24"></button>
+      <div class="produto-box-btns">
+        <button class="button font-2-s">Chat <img src="../../assets/fogo-de-fundo-home.svg" alt="" width="24"></button>
+        <button (click)="favoritar()" class="button font-2-s" [disabled]="disabled">Favoritar <img src="../../assets/box2-heart-fill.svg" alt="" width="24"></button>
+      </div>
     </div>
     <div class="produto-desc">
       <h1 class="font-1-xl mb-16 cor-texto-b-3">Descrição</h1>
