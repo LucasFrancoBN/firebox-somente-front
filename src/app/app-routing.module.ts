@@ -11,6 +11,7 @@ import { ListaEditarProdutosComponent } from './lista-editar-produtos/lista-edit
 import { LoginComponent } from './login/login.component';
 import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
 import { PesquisaComponent } from './pesquisa/pesquisa.component';
+import { ProdutoFavoritadoComponent } from './produto-favoritado/produto-favoritado.component';
 import { ProdutoComponent } from './produto/produto.component';
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'cadastro', component: CadastroComponent },
   { path: 'login', component: LoginComponent },
   { path: 'produto/:key', component: ProdutoComponent },
+  { path: 'produto-favoritado/:key', component: ProdutoFavoritadoComponent },
   {
     path: 'cadastrar-produto',
     component: CadastrarProdutoComponent,

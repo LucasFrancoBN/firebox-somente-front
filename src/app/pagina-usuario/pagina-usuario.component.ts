@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { Favoritos } from '../favoritos.service';
-import { ProdutosService } from '../produtos.service';
+import { Produto } from '../produtos.service';
 
 @Component({
   selector: 'app-pagina-usuario',
@@ -14,13 +14,11 @@ export class PaginaUsuarioComponent implements OnInit {
   dadosUsuarios: any;
   favoritados: any;
 
-  constructor(
-    private produtos: ProdutosService,
-    private favoritos: Favoritos
-  ) {}
+  constructor(private produtos: Produto, private favoritos: Favoritos) {}
 
   ngOnInit(): void {
     firebase.auth().onAuthStateChanged((user: any) => {
+      console.log(user);
       if (user) {
         this.email = user.email;
         console.log(user);
@@ -40,6 +38,13 @@ export class PaginaUsuarioComponent implements OnInit {
           console.log(this.favoritados);
         });
       }
+    });
+  }
+
+  excluirProduto(produto: any) {
+    this.produtos.DeletarProduto(produto).then((response) => {
+      window.alert('Produto deletado com sucesso');
+      window.location.reload();
     });
   }
 }

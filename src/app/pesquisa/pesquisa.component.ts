@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProdutosService } from '../produtos.service';
+import { Produto } from '../produtos.service';
 
 @Component({
   selector: 'app-pesquisa',
@@ -23,10 +23,7 @@ export class PesquisaComponent implements OnInit {
   ];
   produtosPesquisados: any;
 
-  constructor(
-    private produto: ProdutosService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private produto: Produto, private route: ActivatedRoute) {}
 
   ngOnInit() {
     const param = this.route.snapshot.paramMap.get('pesquisa');

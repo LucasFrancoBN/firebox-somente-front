@@ -21,6 +21,8 @@ import { PesquisaComponent } from './pesquisa/pesquisa.component';
 import { LoadingComponent } from './loading/loading.component';
 import { Ofertas } from './ofertas.service';
 import { Favoritos } from './favoritos.service';
+import { Produto } from './produtos.service';
+import { ProdutoFavoritadoComponent } from './produto-favoritado/produto-favoritado.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +41,10 @@ import { Favoritos } from './favoritos.service';
     EditarUsuarioComponent,
     PesquisaComponent,
     LoadingComponent,
+    ProdutoFavoritadoComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
-  providers: [AuthGuard, Ofertas, Favoritos],
+  providers: [AuthGuard, Ofertas, Favoritos, Produto],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

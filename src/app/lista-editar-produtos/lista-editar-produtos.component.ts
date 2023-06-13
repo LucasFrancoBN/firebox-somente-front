@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
-import { ProdutosService } from '../produtos.service';
+import { Produto } from '../produtos.service';
 
 @Component({
   selector: 'app-lista-editar-produtos',
   templateUrl: './lista-editar-produtos.component.html',
-  styleUrls: ['./lista-editar-produtos.component.css']
+  styleUrls: ['./lista-editar-produtos.component.css'],
 })
-export class ListaEditarProdutosComponent implements OnInit{
-    produtosCriados: any;
+export class ListaEditarProdutosComponent implements OnInit {
+  produtosCriados: any;
   email: any;
 
-  constructor(private produtos: ProdutosService) {}
+  constructor(private produtos: Produto) {}
 
   ngOnInit(): void {
     firebase.auth().onAuthStateChanged((user: any) => {
@@ -27,6 +27,12 @@ export class ListaEditarProdutosComponent implements OnInit{
           .catch((error) => console.log(error));
         console.log(this.produtosCriados);
       }
+    });
+  }
+  excluirProduto(produto: any) {
+    this.produtos.DeletarProduto(produto).then((response) => {
+      window.alert('Produto deletado com sucesso');
+      window.location.reload();
     });
   }
 }

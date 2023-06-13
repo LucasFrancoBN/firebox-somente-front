@@ -9,8 +9,7 @@
       <h2 class="font-2-m cor-texto-b-6">{{produto.titulo}}</h2>
       <p class="font-2-m cor-texto-b-3 mb-12">R$ {{produto.valor}}</p>
       <div class="lista-produto-produtos-editar-btns">
-        <a class="button">Editar</a>
-        <a class="button">Excluir</a>
+        <a class="button" (click)="excluirProduto(produto)">Excluir</a>
       </div>
     </div>
 

@@ -8,15 +8,7 @@ export class Ofertas {
 
   constructor(private router: Router) {}
 
-  public recuperarOferta(key: string) {
-    this.key = key;
-  }
-  public async RetornarKey() {
-    console.log('teste', this.key);
-    return await this.key;
-  }
-
-  public RetornaOferta(key: any): Promise<any> {
+  public RetornaOferta(key: string): Promise<any> {
     let get: Array<any> = [];
     let set: any;
     return new Promise((resolve, reject) => {
@@ -31,6 +23,26 @@ export class Ofertas {
         })
         .catch((err: any) => {
           console.log(err);
+        });
+    });
+  }
+
+  public RetornaOfertaFavoritada(email: any, key: string): Promise<any> {
+    let get: Array<any> = [];
+    let set: any;
+    return new Promise((resolve, reject) => {
+      firebase
+        .database()
+        .ref(`favoritos/${btoa(email)}/${key}`)
+        .once('value')
+        .then((ofeta) => {
+          set = ofeta.val();
+          get.push(set);
+          resolve(get);
+        })
+        .catch((err: any) => {
+          console.log(err);
+          reject(err);
         });
     });
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import * as firebase from 'firebase';
-import { ProdutosService } from '../produtos.service';
+import { Produto } from '../produtos.service';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -30,7 +30,7 @@ export class CadastrarProdutoComponent implements OnInit {
     valor: new FormControl(null),
   });
 
-  constructor(private produto: ProdutosService) {}
+  constructor(private produto: Produto) {}
 
   ngOnInit(): void {
     firebase.auth().onAuthStateChanged((user: any) => {

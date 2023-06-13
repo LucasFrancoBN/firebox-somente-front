@@ -1,16 +1,16 @@
+// Serviço criado para cadastro de produtos
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class ProdutosService {
+@Injectable()
+export class Produto {
   public imagem: Array<any> = [];
   public key: any;
   public nome: any;
-
-  constructor() {}
+  public contador: number = 0;
+  constructor(private router: Router) {}
 
   //função para armazenar uma imagem no firebase e criar o nó contendo as informações do produto
   public publicar(publicacao: any): Promise<any> {
@@ -25,6 +25,8 @@ export class ProdutosService {
           valor: publicacao.valor,
           email: publicacao.email,
           nome_usuario: publicacao.nome_usuario,
+          telefone: publicacao.telefone,
+          descricao: publicacao.descricao,
         })
         .then((resposta: any) => {
           // console.log(resposta)
@@ -34,7 +36,7 @@ export class ProdutosService {
           firebase
             .storage()
             .ref()
-            .child(`imagens/${nomeImagem}`)
+            .child(`${this.key}/${nomeImagem}`)
             .put(publicacao.imagem)
             .then((snapshot) => {
               console.log('concluida1');
@@ -60,12 +62,11 @@ export class ProdutosService {
   //funçao que faz update no nó solicitado e armazena a segunda foto
   public publicar2(publicacao: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      let nomeImagem = Date.now();
-
+      let nomeImagem = this.key + '1';
       firebase
         .storage()
         .ref()
-        .child(`imagens/${nomeImagem}`)
+        .child(`${this.key}/${nomeImagem}`)
         .put(publicacao.imagem2)
         .then((snapshot) => {
           // Upload concluído com sucesso
@@ -102,12 +103,11 @@ export class ProdutosService {
 
   public publicar3(publicacao: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      let nomeImagem = Date.now();
-
+      let nomeImagem = this.key + '2';
       firebase
         .storage()
         .ref()
-        .child(`imagens/${nomeImagem}`)
+        .child(`${this.key}/${nomeImagem}`)
         .put(publicacao.imagem3)
         .then((snapshot) => {
           // Upload concluído com sucesso
@@ -132,24 +132,21 @@ export class ProdutosService {
           });
         })
         .catch((error) => {
-          // Tratamento de erro
           console.error(error);
           reject(error);
         });
 
-      //console.log(publicacao)
       console.log('chegamos até o controle de dados3');
     });
   }
 
   public publicar4(publicacao: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      let nomeImagem = Date.now();
-
+      let nomeImagem = this.key + '3';
       firebase
         .storage()
         .ref()
-        .child(`imagens/${nomeImagem}`)
+        .child(`${this.key}/${nomeImagem}`)
         .put(publicacao.imagem4)
         .then((snapshot) => {
           // Upload concluído com sucesso
@@ -184,63 +181,81 @@ export class ProdutosService {
     });
   }
 
-  // traz todos os produtos
-  public consultarProdutosporpagina(
-    pagina: number,
-    produtoPorPagina: number
+  public consultarProdutos(pagina: number): Promise<any> {
+    const produtosPorPagina = 2;
+    const inicio = (pagina - 1) * produtosPorPagina;
+    const fim = inicio + produtosPorPagina;
+    try {
+      return firebase
+        .database()
+        .ref('produtos')
+        .orderByKey()
+        .once('value')
+        .then((snapshot) => {
+          const produtos: Array<any> = [];
+          snapshot.forEach((childSnapshot: any) => {
+            let publicacao = childSnapshot.val();
+            publicacao.key = childSnapshot.key;
+            produtos.push(publicacao);
+          });
+          this.contador++;
+          console.log('Página Avançada');
+          console.log(`Teste: ${this.contador}`);
+          console.log(`Página: ${pagina}`);
+          console.log('Teste efetivo');
+          const produtosPaginados = produtos.reverse().slice(inicio, fim);
+          return produtosPaginados;
+        });
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
+  //Serve para voltar de página
+  public consultarProdutosPaginados(
+    produtoPorPagina: number,
+    pagina: number
   ): Promise<any> {
     const produtosPorPagina = produtoPorPagina;
     const inicio = (pagina - 1) * produtosPorPagina;
     const fim = inicio + produtosPorPagina;
 
-    return new Promise((resolve, reject) => {
-      firebase
+    try {
+      return firebase
         .database()
-        .ref(`produtos`)
+        .ref('produtos')
         .orderByKey()
         .once('value')
         .then((snapshot) => {
-          let produtos: Array<any> = [];
+          const produtos: Array<any> = [];
           snapshot.forEach((childSnapshot: any) => {
             let publicacao = childSnapshot.val();
             publicacao.key = childSnapshot.key;
             produtos.push(publicacao);
           });
-          const produtosPaginados = produtos.slice(inicio, fim);
-          resolve(produtosPaginados);
-        })
-        .catch((error) => {
-          reject(error);
+          const produtosPaginados = produtos.reverse().slice(inicio, fim);
+          return produtosPaginados;
         });
-    });
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }
 
-  public consultarProdutos(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      firebase
-        .database()
-        .ref(`produtos`)
-        .orderByKey()
-        .once('value')
-        .then((snapshot) => {
-          //console.log(snapshot.val())
-          let produtos: Array<any> = [];
-          this.nome = snapshot.val();
-
-          snapshot.forEach((childSnapshot: any) => {
-            let publicacao = childSnapshot.val();
-            publicacao.key = childSnapshot.key;
-            produtos.push(publicacao);
-            resolve(produtos);
-          });
-
-          return produtos.reverse();
-        });
-    });
+  public voltarPagina(produtoPorPagina: number, paginaAtual: number): Promise<any> {
+    try {
+      const paginaAnterior = paginaAtual - 2;
+      return this.consultarProdutosPaginados(produtoPorPagina, paginaAnterior);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }
-
   // filtro por categoria
-  public consultarProdutosPorCategoria(categoria: string): Promise<any> {
+  public consultarProdutosPorCategoria(
+    categoria: string
+  ): Promise<any> {
     return new Promise((resolve, reject) => {
       firebase
         .database()
@@ -275,7 +290,6 @@ export class ProdutosService {
         .orderByChild('titulo')
         .startAt(titulo)
         .endAt(titulo + '\uf8ff');
-
       const escutar = ref.on('value', (snapshot: any) => {
         const produtos: Array<any> = [];
         snapshot.forEach((childSnapshot: any) => {
@@ -283,6 +297,7 @@ export class ProdutosService {
           publicacao.key = childSnapshot.key;
           produtos.push(publicacao);
         });
+        this.router.navigate(['/pesquisa']);
         observer.next(produtos);
       });
     });
@@ -314,6 +329,7 @@ export class ProdutosService {
         });
     });
   }
+
   //acessa dados do usuario e retorna o nome para armazenamento
   public acessarDadosUsuarioDetalhe(email: string): string {
     let nome: string = '';
@@ -324,7 +340,23 @@ export class ProdutosService {
         snapshot.forEach((childSnapshot: any) => {
           const dadosUsuario = childSnapshot.val();
           nome = dadosUsuario.nome_usuario;
-          // console.log(dadosUsuario.nome_usuario);
+          console.log(dadosUsuario.nome_usuario);
+        });
+      });
+
+    return nome;
+  }
+  //acessa o telefone para salvar nos dados do produto
+  public acessarTelefone(email: string): string {
+    let nome: string = '';
+    firebase
+      .database()
+      .ref(`usuario_detalhe/${btoa(email)}`)
+      .on('value', (snapshot: any) => {
+        snapshot.forEach((childSnapshot: any) => {
+          const dadosUsuario = childSnapshot.val();
+          nome = dadosUsuario.telefone;
+          console.log(dadosUsuario.telefone);
         });
       });
 
@@ -339,12 +371,12 @@ export class ProdutosService {
         .on(
           'value',
           (snapshot: any) => {
-            let nome: string = '';
+            let dados: string = '';
             snapshot.forEach((childSnapshot: any) => {
               const dadosUsuario = childSnapshot.val();
-              nome = dadosUsuario;
+              dados = dadosUsuario;
             });
-            resolve(nome);
+            resolve(dados);
           },
           (error: any) => {
             reject(error);
@@ -353,27 +385,65 @@ export class ProdutosService {
     });
   }
 
-  // acessa dados do produto
-  public async acessarDadosProduto(email: string): Promise<string> {
+  //Função que deleta Produtos
+  public async DeletarProduto(produto: any): Promise<any> {
+    let ok: boolean = true;
     return new Promise((resolve, reject) => {
-      let nome: string = '';
       firebase
         .database()
-        .ref(`produtos/${btoa(email)}`)
-        .on(
-          'value',
-          (snapshot: any) => {
-            snapshot.forEach((childSnapshot: any) => {
-              const dadosUsuario = childSnapshot.val();
-              nome = dadosUsuario.nome_usuario;
-              console.log(dadosUsuario);
-            });
-            resolve(nome);
-          },
-          (error: any) => {
-            reject(error);
+        .ref(`produtos/${produto.key}`)
+        .once('value')
+        .then((dados: any) => {
+          console.log(dados.val());
+          let imagens = dados.val().url;
+          console.log(dados.val());
+          for (let i = 0; i < imagens.length; i++) {
+            if (i === 0) {
+              firebase
+                .storage()
+                .ref()
+                .child(`${produto.key}/${produto.key}`)
+                .delete()
+                .then(() => {
+                  console.log('deletado do storage 1');
+                });
+            } else if (i === 1) {
+              firebase
+                .storage()
+                .ref()
+                .child(`${produto.key}/${produto.key}1`)
+                .delete()
+                .then(() => {
+                  console.log('deletado do storage 2');
+                });
+            } else if (i === 2) {
+              firebase
+                .storage()
+                .ref()
+                .child(`${produto.key}/${produto.key}2`)
+                .delete()
+                .then(() => {
+                  console.log('deletado do storage 3');
+                });
+            } else if (i === 3) {
+              firebase
+                .storage()
+                .ref()
+                .child(`${produto.key}/${produto.key}3`)
+                .delete()
+                .then(() => {
+                  console.log('deletado do storage 4');
+                });
+            }
           }
-        );
+          firebase.database().ref(`produtos/${produto.key}`).remove();
+          console.log('Deletado com sucesso');
+          resolve(ok);
+        })
+        .catch(() => {
+          ok = false;
+          reject(ok);
+        });
     });
   }
 }

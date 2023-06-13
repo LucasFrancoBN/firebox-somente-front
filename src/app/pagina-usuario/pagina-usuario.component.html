@@ -5,7 +5,7 @@
   <h1 class="font-1-xxl mb-12 cor-texto-b-3">Favoritos</h1>
   <div class="usuario-favoritos-wrapper mb-60">
     <div class="usuario-favoritos-produtos mb-12" *ngIf="favoritados" >
-      <a [routerLink]="'/produto/' + favorito.key" class="usuario-favoritos-produto" *ngFor="let favorito of favoritados.slice(0, 4)">
+      <a [routerLink]="'/produto-favoritado/' + favorito.key" class="usuario-favoritos-produto" *ngFor="let favorito of favoritados.slice(0, 4)">
         <figure class="usuario-favoritos-imagem mb-12">
           <img src="{{favorito.url[0]}}" width="215" height="128">
         </figure>
@@ -24,7 +24,7 @@
     </div>
     <div class="usuario-produto">
       <div class="usuario-produto-editar mb-16">
-        <h2 class="font-2-l mb-8 cor-texto-b-6">Deseja editar ou excluir um produto?</h2>
+        <h2 class="font-2-l mb-8 cor-texto-b-6">Deseja excluir um produto?</h2>
         <div class="usuario-produto-editar-wrapper mb-60">
           <div class="usuario-produto-editar-produtos mb-12" *ngIf="produtosCriados && produtosCriados.length > 0">
             <div *ngFor="let produto of produtosCriados.slice(0, 4)" class="usuario-produto-editar-produto">
@@ -34,8 +34,7 @@
               <h2 class="usuario-produto-editar-nome font-2-m mb-8 cor-texto-b-6">{{produto.titulo}}</h2>
               <p class="usuario-produto-editar-preco font-2-m cor-texto-b-3 mb-14">R$ {{produto.valor}}</p>
               <div class="usuario-produto-editar-btns">
-                <a class="button" routerLink="/produtos/editar-produto">Editar</a>
-                <a class="button">Excluir</a>
+                <a class="button" (click)="excluirProduto(produto)">Excluir</a>
               </div>
             </div>
             <ng-container *ngIf="!produtosCriados || produtosCriados.length === 0">

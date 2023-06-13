@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProdutosService } from '../produtos.service';
+import { Produto } from '../produtos.service';
 
 @Component({
   selector: 'app-home',
@@ -19,12 +19,12 @@ export class HomeComponent implements OnInit {
   outros: any;
   isLoading: boolean = false;
   promises: Promise<any>[] = [];
-  constructor(private produtos: ProdutosService) {}
+  constructor(private produtos: Produto) {}
 
   ngOnInit(): void {
     this.isLoading = true;
     this.promises.push(
-      this.produtos.consultarProdutosporpagina(1, 6).then((produtos) => {
+      this.produtos.consultarProdutosPaginados(6,1).then((produtos) => {
         this.principaisProdutos = produtos;
         console.log(this.principaisProdutos);
       })
