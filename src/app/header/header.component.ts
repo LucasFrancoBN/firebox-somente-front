@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Autenticacao } from '../autenticacao.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -17,12 +18,21 @@ export class HeaderComponent implements OnInit {
     pesquisa: new FormControl(null),
   });
 
-  constructor(private autenticacao: Autenticacao, private router: Router) {}
+  constructor(
+    private autenticacao: Autenticacao,
+    private router: Router,
+    private location: Location
+  ) {}
 
   ngOnInit() {}
 
   pesquisar() {
-    this.router.navigateByUrl('/pesquisa/' + this.formulario.value.pesquisa);
+    if (this.location.path().includes('/pesquisa/')) {
+      // window.location.reload();
+      this.router.navigateByUrl('/pesquisa/' + this.formulario.value.pesquisa);
+    } else {
+      this.router.navigateByUrl('/pesquisa/' + this.formulario.value.pesquisa);
+    }
   }
 
   estaLogado() {

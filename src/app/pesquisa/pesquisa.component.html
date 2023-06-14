@@ -1,4 +1,4 @@
-<article class="pesquisa-wrapper container">
+<article class="pesquisa-wrapper container" *ngIf="produtosPesquisados">
   <div *ngIf="isLoading"><app-loading></app-loading></div>
   <a *ngFor="let produto of produtosPesquisados" [routerLink]="'/produto/' + produto.key" class="pesquisa-produto bg-tema-escuro-2 mb-40">
     <img [src]="produto.url[0]" width="180" height="180">

@@ -15,6 +15,10 @@ import { ProdutoFavoritadoComponent } from './produto-favoritado/produto-favorit
 import { ProdutoComponent } from './produto/produto.component';
 
 const routes: Routes = [
+  {
+    path: 'pesquisa/:pesquisa',
+    component: PesquisaComponent,
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'cadastro', component: CadastroComponent },
@@ -50,10 +54,6 @@ const routes: Routes = [
     path: 'usuario/editar-usuario',
     component: EditarUsuarioComponent,
     canActivate: [AuthGuard],
-  },
-  {
-    path: 'pesquisa/:pesquisa',
-    component: PesquisaComponent,
   },
 ];
 

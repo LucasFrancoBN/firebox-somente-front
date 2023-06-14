@@ -49,7 +49,7 @@ export class CadastrarProdutoComponent implements OnInit {
     const promises = [];
 
     promises.push(
-      this.produto.publicar({
+      await this.produto.publicar({
         email: this.email,
         titulo: this.formulario.value.titulo,
         categoria: this.formulario.value.categoria,
@@ -62,7 +62,7 @@ export class CadastrarProdutoComponent implements OnInit {
     );
 
     promises.push(
-      this.produto.publicar2({
+      await this.produto.publicar2({
         email: this.email,
         titulo: this.formulario.value.titulo,
         categoria: this.formulario.value.categoria,
@@ -72,7 +72,7 @@ export class CadastrarProdutoComponent implements OnInit {
     );
 
     promises.push(
-      this.produto.publicar3({
+      await this.produto.publicar3({
         email: this.email,
         titulo: this.formulario.value.titulo,
         categoria: this.formulario.value.categoria,
@@ -82,7 +82,7 @@ export class CadastrarProdutoComponent implements OnInit {
     );
 
     promises.push(
-      this.produto.publicar4({
+      await this.produto.publicar4({
         email: this.email,
         titulo: this.formulario.value.titulo,
         categoria: this.formulario.value.categoria,
