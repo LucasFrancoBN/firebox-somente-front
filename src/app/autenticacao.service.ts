@@ -79,7 +79,7 @@ export class Autenticacao {
 
   //esta função só funcionará se o usuário estiver autenticado e deleta apenas do sistema de autenticação
 
-  public desativarConta(): void {
+   public async desativarConta(): Promise<any> {
     firebase
       .auth()
       .currentUser?.delete()

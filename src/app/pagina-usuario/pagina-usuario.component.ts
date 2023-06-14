@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import { Favoritos } from '../favoritos.service';
 import { Produto } from '../produtos.service';
 import { Ofertas } from '../ofertas.service';
+import { Autenticacao } from '../autenticacao.service';
 
 @Component({
   selector: 'app-pagina-usuario',
@@ -15,7 +16,12 @@ export class PaginaUsuarioComponent implements OnInit {
   dadosUsuarios: any;
   favoritados: any;
 
-  constructor(private produtos: Produto, private favoritos: Favoritos, private Oferta:Ofertas) {}
+  constructor(
+    private produtos: Produto,
+    private favoritos: Favoritos,
+    private Oferta: Ofertas,
+    private autenticacao: Autenticacao
+  ) {}
 
   ngOnInit(): void {
     firebase.auth().onAuthStateChanged((user: any) => {
@@ -42,18 +48,27 @@ export class PaginaUsuarioComponent implements OnInit {
     });
   }
 
- async excluirProduto (produto: any) {
+  async excluirProduto(produto: any) {
     await this.produtos.DeletarProduto(produto).then((response) => {
       window.alert('Produto deletado com sucesso');
       setTimeout(() => {
         window.location.reload();
-      },1500)
-      
+      }, 1500);
     });
   }
-  
-  
-  
 
+  async ApagarConta() {
+    try {
+      await this.autenticacao.DeletarUsuarioBD(this.email);
+      await this.ApagarTudo(this.email);
+      await this.autenticacao.desativarConta();
+      await Promise.all([this.autenticacao.sair()]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
+  public async ApagarTudo(email: any) {
+    this.produtos.DeletarProduto(email).then(() => {});
+  }
 }

@@ -27,11 +27,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   pesquisar() {
-    if (this.location.path().includes('/pesquisa/')) {
-      // window.location.reload();
+    if (this.location.path().includes('/pesquisa-2/')) {
       this.router.navigateByUrl('/pesquisa/' + this.formulario.value.pesquisa);
     } else {
-      this.router.navigateByUrl('/pesquisa/' + this.formulario.value.pesquisa);
+      this.router.navigateByUrl(
+        '/pesquisa-2/' + this.formulario.value.pesquisa
+      );
     }
   }
 

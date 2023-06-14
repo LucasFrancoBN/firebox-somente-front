@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'pesquisa/:pesquisa',
     component: PesquisaComponent,
   },
+  {
+    path: 'pesquisa-2/:pesquisa',
+    component: PesquisaComponent,
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'cadastro', component: CadastroComponent },
