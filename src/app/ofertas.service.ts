@@ -8,7 +8,7 @@ export class Ofertas {
 
   constructor(private router: Router) {}
 
-  public RetornaOferta(key: string): Promise<any> {
+  public RetornaOferta(key: any): Promise<any> {
     let get: Array<any> = [];
     let set: any;
     return new Promise((resolve, reject) => {
@@ -17,6 +17,7 @@ export class Ofertas {
         .ref(`produtos/${key}`)
         .once('value')
         .then((ofeta) => {
+          console.log(ofeta);
           set = ofeta.val();
           get.push(set);
           resolve(get);
@@ -27,13 +28,33 @@ export class Ofertas {
     });
   }
 
-  public RetornaOfertaFavoritada(email: any, key: string): Promise<any> {
+  public RetornaOfertaFavoritada(email: any, key: any): Promise<any> {
     let get: Array<any> = [];
     let set: any;
     return new Promise((resolve, reject) => {
       firebase
         .database()
         .ref(`favoritos/${btoa(email)}/${key}`)
+        .once('value')
+        .then((ofeta) => {
+          set = ofeta.val();
+          get.push(set);
+          resolve(get);
+        })
+        .catch((err: any) => {
+          console.log(err);
+          reject(err);
+        });
+    });
+  }
+
+  public RetornaProdutoCadastrado(key: any): Promise<any> {
+    let get: Array<any> = [];
+    let set: any;
+    return new Promise((resolve, reject) => {
+      firebase
+        .database()
+        .ref(`produtos/${key.key}`)
         .once('value')
         .then((ofeta) => {
           set = ofeta.val();

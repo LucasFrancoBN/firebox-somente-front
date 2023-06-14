@@ -22,30 +22,21 @@ export class PesquisaComponent implements OnInit {
     'outros',
   ];
   produtosPesquisados: any;
+  isLoading: boolean = false;
 
   constructor(private produto: Produto, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.isLoading = true;
     const param = this.route.snapshot.paramMap.get('pesquisa');
-    const paramFormatado = param!
-      .toLocaleLowerCase()
-      .replace('ô', 'o')
-      .replace('ó', 'o')
-      .replace('ç', 'c')
-      .replace('ã', 'a');
-    if (this.caregorias.includes(paramFormatado)) {
-      this.produto
-        .consultarProdutosPorCategoria(paramFormatado)
-        .then((produto) => (this.produtosPesquisados = produto));
-    } else {
-      this.produtosPesquisados = this.produto
-        .Pesquisar(param!)
-        .subscribe((produtos: any[]) => {
-          this.produtosPesquisados = produtos;
-          console.log(this.produtosPesquisados);
-        });
-      console.log(this.produtosPesquisados);
-    }
+    this.produtosPesquisados = this.produto
+      .Pesquisar(param!)
+      .subscribe((produtos: any[]) => {
+        this.produtosPesquisados = produtos;
+        console.log(this.produtosPesquisados);
+        this.isLoading = false;
+      });
+    console.log(this.produtosPesquisados);
   }
 
   criarIteracoes(numero: number): number[] {
