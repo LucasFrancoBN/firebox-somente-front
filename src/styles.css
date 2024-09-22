@@ -1,9 +1,9 @@
-  @import url('https://fonts.googleapis.com/css2?family=Inter&family=Quicksand:wght@500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Quicksand:wght@500;600&display=swap");
 
 html {
   /* COR BASE */
   --cor-b-12: #000;
-  --cor-bg: #070707
+  --cor-bg: #070707;
   --cor-b-11: #121212;
   --cor-b-10: #2f2f2f;
   --cor-b-9: #404040;
@@ -11,18 +11,20 @@ html {
   --cor-b-7: #707070;
   --cor-b-6: #9c9c9c;
   --cor-b-5: #b3b3b3;
-  --cor-b-4: #CCC;
+  --cor-b-4: #ccc;
   --cor-b-3: #dedede;
   --cor-b-2: #ededed;
   --cor-b-1: #f7f7f7;
   --cor-b-branco: #fff;
 
+  --cor-bg-tema-escuro: #1a1a1a;
+  --cor-bg-tema-escuro-2: #121212;
   --cor-texto: #262626;
   --cor-b-bg-preto: #070707;
 
   /* COR ENFASE */
-  --cor-e-11: #c41d00
-  --cor-e-10: #cd2c00
+  --cor-e-11: #c41d00;
+  --cor-e-10: #cd2c00;
   --cor-e-9: #d63c00;
   --cor-e-8: #dd4c00;
   --cor-e-7: #e65c00;
@@ -32,13 +34,14 @@ html {
   --cor-e-3: #ffb347;
   --cor-e-2: #ffc65e;
   --cor-e-1: #ffda74;
-  --cor-e-gradiente: linear-gradient(180deg, #FF8C00, #F0740D);
-  --cor-e-gradiente-invertido: linear-gradient(180deg, #F0740D, #FF8C00 );
+  --cor-e-gradiente: linear-gradient(180deg, #ff8c00, #f0740d);
+  --cor-e-gradiente-invertido: linear-gradient(180deg, #f0740d, #ff8c00);
 
   /* ESPACAMENTO */
   --mb-4: 4px;
   --mb-8: 8px;
   --mb-12: 12px;
+  --mb-14: 14px;
   --mb-16: 16px;
   --mb-20: 20px;
   --mb-24: 24px;
@@ -63,11 +66,13 @@ html {
   --font-1-m: 500 1.125rem/1.5 "Quicksand", sans-serif;
   --font-1-m-b: 600 1.125rem/1.5 "Quicksand", sans-serif;
   --font-2-m: 400 1.125rem/1.5 "Inter", sans-serif;
+  --font-1-s-b: 600 1rem/1.5 "Quicksand", sans-serif;
   --font-1-s: 500 1rem/1.5 "Quicksand", sans-serif;
   --font-2-s: 400 1rem/1.5 "Inter", sans-serif;
-  --font-1-xs: 500 .875rem/1.5 "Quicksand", sans-serif;
-  --font-2-xs: 400 .875rem/1.5 "Inter", sans-serif;
-  --font-2-xxs: 400 .75rem/1.5 "Inter", sans-serif;
+  --font-1-xs: 500 0.875rem/1.5 "Quicksand", sans-serif;
+  --font-1-xs-b: 600 0.875rem/1.5 "Quicksand", sans-serif;
+  --font-2-xs: 400 0.875rem/1.5 "Inter", sans-serif;
+  --font-2-xxs: 400 0.75rem/1.5 "Inter", sans-serif;
 }
 
 *,
@@ -79,7 +84,7 @@ html {
 }
 
 body {
-  background-color: #070707;
+  background-color: var(--cor-bg-tema-escuro);
 }
 
 ul,
@@ -106,55 +111,65 @@ label {
   display: block;
 }
 
-input {
+input:not([type="file"]),
+textarea,
+select {
   display: block;
   outline: none;
   padding: 0.5rem;
   border: 2px solid rgba(155, 155, 155, 0.2);
   background-color: rgba(155, 155, 155, 0.1);
   border-radius: 4px;
+  width: 100%;
+  color: var(--cor-b-1);
 }
 
-input:focus {
+input:not([type="file"], .barra-pesquisa):focus,
+textarea:focus,
+select:focus {
   border: 2px solid var(--cor-e-5);
-  background-color: var(--cor-b-branco);
+  background-color: var(--cor-b-8);
+  color: var(--cor-b-1);
 }
 
 .font-1-xxl {
-  font: var(--font-1-xxl)
+  font: var(--font-1-xxl);
 }
 .font-1-xl {
-  font: var(--font-1-xl)
+  font: var(--font-1-xl);
 }
 .font-2-xl {
-  font: var(--font-2-xl)
+  font: var(--font-2-xl);
 }
 .font-1-l {
-  font: var(--font-1-l)
+  font: var(--font-1-l);
 }
 .font-2-l {
-  font: var(--font-2-l)
+  font: var(--font-2-l);
 }
 .font-1-m {
-  font: var(--font-1-m)
+  font: var(--font-1-m);
 }
 .font-1-m-b {
-  font: var(--font-1-m-b)
+  font: var(--font-1-m-b);
 }
 .font-2-m {
-  font: var(--font-2-m)
+  font: var(--font-2-m);
+}
+.font-1-s-b {
+  font: var(--font-1-s-b);
 }
 .font-1-s {
-  font: var(--font-1-s)
+  font: var(--font-1-s);
 }
 .font-2-s {
-  font: var(--font-2-s)
+  font: var(--font-2-s);
 }
 .font-1-xs {
-  font: var(--font-1-xs)
+  font: var(--font-1-xs);
 }
 .font-2-xs {
-  font: var(--font-2-xs)
+  font: var(--font-2-xs);
 }
 
 .container {
@@ -182,12 +197,33 @@ input:focus {
   background-color: var(--cor-b-11);
 }
 
+.bg-tema-escuro {
+  background-color: var(--cor-bg-tema-escuro);
+}
+
+.bg-tema-escuro-2 {
+  background-color: #121212;
+}
+
 .bg-gradiente {
   background: var(--cor-e-gradiente);
 }
 
 .cor-texto {
   color: var(--cor-b-11);
+}
+
+.cor-texto-branco {
+  color: var(--cor-b-1);
+}
+.cor-texto-b-3 {
+  color: var(--cor-b-3);
+}
+.cor-texto-b-4 {
+  color: var(--cor-b-4);
+}
+.cor-texto-b-6 {
+  color: var(--cor-b-6);
 }
 
 .cor-nome-produto {
@@ -210,6 +246,9 @@ input:focus {
 }
 .mb-12 {
   margin-bottom: var(--mb-12);
+}
+.mb-14 {
+  margin-bottom: var(--mb-14);
 }
 .mb-16 {
   margin-bottom: var(--mb-16);
@@ -250,6 +289,14 @@ input:focus {
 .mb-200 {
   margin-bottom: var(--mb-200);
 }
+@media (max-width: 860px) {
+  .mb-120 {
+    margin-bottom: var(--mb-80);
+  }
+  .mb-200 {
+    margin-bottom: var(--mb-80);
+  }
+}
 
 .button {
   text-transform: uppercase;
@@ -258,4 +305,22 @@ input:focus {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
+  width: max-content;
+}
+
+.success {
+  padding: 0.5rem 1rem;
+  background-color: #379237;
+  margin-bottom: var(--mb-16);
+  border-radius: 4px;
+  color: var(--cor-b-1);
+}
+
+.warning {
+  padding: 0.5rem 1rem;
+  background-color: #ffd95a;
+  margin-top: var(--mb-16);
+  margin-bottom: var(--mb-16);
+  border-radius: 4px;
+  color: var(--cor-b-12);
 }

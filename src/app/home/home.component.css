@@ -7,7 +7,7 @@
 @media (max-width: 860px) {
   .produtos-container {
     grid-template-columns: repeat(6, 360px);
-    overflow-y: scroll;
+    overflow-x: scroll;
   }
 }
 
@@ -38,11 +38,18 @@
 
 .produtos {
   padding: 1.125rem 0;
-  background: #000 url("../../assets/fogo-de-fundo-home.svg");
+  background: #121212 url("../../assets/fogo-de-fundo-home.svg");
 }
 
 .produto {
   border-radius: 4px;
+}
+
+.produto img {
+  object-fit: cover;
+  width: 100%;
+  height: 170px;
+  border-radius: 4px 4px 0 0;
 }
 
 .produto-desc {
@@ -68,7 +75,7 @@
 
 @media (max-width: 860px) {
   .categorias-container {
-    overflow-y: scroll;
+    overflow-x: scroll;
   }
 
   .categoria {
@@ -87,6 +94,6 @@
 
 a.produto:hover,
 a.categoria:hover {
-  transform: scale(1.1);
+  transform: scale(0.95);
   transition: all 0.3s;
 }
